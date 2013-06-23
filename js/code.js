@@ -176,8 +176,13 @@ function MainController($scope, storageService, keyUtilities) {
 	}
 
     $scope.showAccount = function(index) {
-        var account = storageService.getObject('accounts')[index];
-        alert(account.secret);
+        var secret = storageService.getObject('accounts')[index].secret;
+        alert([
+            secret.slice(0,4),
+            secret.slice(4,8),
+            secret.slice(8,12),
+            secret.slice(12,16)
+        ].join('-'));
     }
 
 	// clear fields
