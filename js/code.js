@@ -175,10 +175,14 @@ function MainController($scope, storageService, keyUtilities) {
 		}
 	}
 
+    $scope.showAccount = function(index) {
+        var account = storageService.getObject('accounts')[index];
+        alert(account.secret);
+    }
+
 	// clear fields
 	$scope.resetAccount = function() {
 		$scope.newAccount = {};
-		$.mobile.changePage('#keys');
 	}
 
 	// delayed initialize
@@ -187,14 +191,3 @@ function MainController($scope, storageService, keyUtilities) {
 	});
 }
 
-// Main function
-$(document).bind('pagecreate', function() {
-	// Background styling for dialogs
-	$('div[data-role="dialog"]').live('pagebeforeshow', function(e, ui) {
-		ui.prevPage.addClass("ui-dialog-background");
-	});
-
-	$('div[data-role="dialog"]').live('pagehide', function(e, ui) {
-		$(".ui-dialog-background ").removeClass("ui-dialog-background");
-	});
-});
